@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -51,6 +53,22 @@ public class MainActivity extends Activity implements OnEditorActionListener {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+    
+    
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.menu_settings) {
+			openSettings();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void openSettings() {
+		Intent intent = new Intent(this, SettingsActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
